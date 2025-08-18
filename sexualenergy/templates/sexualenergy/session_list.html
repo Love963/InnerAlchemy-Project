@@ -1,0 +1,13 @@
+<h2>My Sexual Energy Sessions</h2>
+<a href="{% url 'sexualenergy:session_create' %}">+ New Session</a>
+<ul>
+  {% for session in sessions %}
+    <li>
+      <a href="{% url 'sexualenergy:session_detail' session.pk %}">
+        {{ session.intention }} ({{ session.duration_minutes }} mins)
+      </a>
+    </li>
+  {% empty %}
+    <li>No sessions yet.</li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,6 @@
+<h2>Delete Log</h2>
+<p>Are you sure you want to delete this log from {{ object.logged_at }}?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, delete</button>
+</form>

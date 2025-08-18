@@ -1,0 +1,7 @@
+<h2>Log on {{ log.logged_at }}</h2>
+<p><strong>Urges Felt:</strong> {{ log.urges_felt }}</p>
+<p><strong>Energy Level:</strong> {{ log.energy_level }}</p>
+<p><strong>Redirect Activity:</strong> {{ log.redirect_activity }}</p>
+<p><strong>Reflection:</strong> {{ log.reflection }}</p>
+<a href="{% url 'sexualenergy:log_update' log.pk %}">Edit</a> |
+<a href="{% url 'sexualenergy:log_delete' log.pk %}">Delete</a>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solfeggio Frequencies</title>
+</head>
+<body>
+    <h1>Solfeggio Frequencies</h1>
+    <ul>
+        {% for freq in frequencies %}
+            <li>{{ freq.name }} - {{ freq.frequency_hz }} Hz <br> {{ freq.description }}</li>
+        {% empty %}
+            <li>No frequencies added yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

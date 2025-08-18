@@ -1,0 +1,5 @@
+<h2>{{ session.intention }}</h2>
+<p><strong>Duration:</strong> {{ session.duration_minutes }} mins</p>
+<p><strong>Notes:</strong> {{ session.practice_notes }}</p>
+<a href="{% url 'sexualenergy:session_update' session.pk %}">Edit</a> |
+<a href="{% url 'sexualenergy:session_delete' session.pk %}">Delete</a>

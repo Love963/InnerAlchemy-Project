@@ -1,0 +1,77 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+
+.container {
+    max-width: 480px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background-color: #fffffffd;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #0d3b66;
+    margin-bottom: 25px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+form p {
+    margin-bottom: 15px;
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea, 
+form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+
+}
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form textarea:focus,
+form input[type="file"]:focus {
+    border-color: #0d3b66;
+    outline: none;
+}
+button {
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #0d3b66;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition:  background-color 0.3s ease;
+}
+button:hover {
+    background-color: #084a99;
+}
+.profile-container {
+    text-align: center;
+}
+.profile-image-wrapper img{
+    max-width: 150px;
+    border-radius: 50%;
+    border: 3px solid #0d3b66;
+    margin-bottom: 20px;
+}
+.bio {
+    font-style: italic;
+    color: #555;
+    white-space: pre-wrap;
+}

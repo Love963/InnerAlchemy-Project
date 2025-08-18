@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnerAlchemy Dashboard</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user.username }} 🌟</h1>
+
+        <section>
+            <h2>Recent Breathwork Sessions</h2>
+            <ul>
+                {% for session in recent_breathwork %}
+                    <li>{{ session.technique }} - {{ session.duration }} min - {{ session.date }}</li>
+                {% empty %}
+                    <li>No recent sessions</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Recent Chakra Logs</h2>
+            <ul>
+                {% for log in recent_chakras %}
+                    <li>{{ log.chakra_name }} - {{ log.state }} - {{ log.date }}</li>
+                {% empty %}
+                    <li>No recent logs</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Sexual Energy Sessions</h2>
+            <ul>
+                {% for session in recent_sexual_energy %}
+                    <li>{{ session.intention }} - {{ session.duration_minutes }} min - {{ session.created_at|date:"Y-m-d" }}</li>
+                {% empty %}
+                    <li>No recent sessions</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Visualization & Affirmations</h2>
+            <ul>
+                {% for vis in recent_visualizations %}
+                    <li>{{ vis.title }} - {{ vis.date_created }}</li>
+                {% empty %}
+                    <li>No recent visualizations</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Gratitude Entries</h2>
+            <ul>
+                {% for entry in recent_gratitude %}
+                    <li>{{ entry.content }} - {{ entry.date }}</li>
+                {% empty %}
+                    <li>No recent entries</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Cold Shower Logs</h2>
+            <ul>
+                {% for log in recent_coldshowers %}
+                    <li>Mood before: {{ log.mood_before }}, Mood after: {{ log.mood_after }} - {{ log.date }}</li>
+                {% empty %}
+                    <li>No recent logs</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+    </div>
+</body>
+</html>

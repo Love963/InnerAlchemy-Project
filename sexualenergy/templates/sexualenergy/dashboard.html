@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Sexual Energy Dashboard</h1>
+<h2>Recent Sessions</h2>
+
+<ul>
+    {% for session in sessions %}
+    <li>
+        <strong>{{ session.intention }}</strong> - {{ session.duration_minutes }} min <br>
+        {{ session.practice_notes|default:"No notes"}}
+    </li>
+    {% empty %}
+    <li>No sessions yet.</li>
+    {% endfor %}
+</ul>
+
+<h2>Energy Logs</h2>
+<ul>
+    {% for log in logs %}
+    <li>
+        <strong>Energy level:</strong> {{ log.energy_level }}/10 <br>
+        Redirect: {{ log.redirect_activity|default:"None"}} <br>
+        Reflection: {{ log.reflection|default:"No reflection" }}
+
+    </li>
+    {% empty %}
+    <li>No logs yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

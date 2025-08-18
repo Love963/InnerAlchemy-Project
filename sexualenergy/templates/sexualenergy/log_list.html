@@ -1,0 +1,13 @@
+<h2>My Sexual Energy Logs</h2>
+<a href="{% url 'sexualenergy:log_create' %}">+ New Log</a>
+<ul>
+  {% for log in logs %}
+    <li>
+      <a href="{% url 'sexualenergy:log_detail' log.pk %}">
+        {{ log.logged_at }} - Energy: {{ log.energy_level }}
+      </a>
+    </li>
+  {% empty %}
+    <li>No logs yet.</li>
+  {% endfor %}
+</ul>
