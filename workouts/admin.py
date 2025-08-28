@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import WorkoutSession
+
 # Register your models here.
 @admin.register(WorkoutSession)
 class WorkoutSessionAdmin(admin.ModelAdmin):

@@ -1,15 +1,16 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
-
-# If your solfeggio app is named "solfeggio" and model is SolfeggioFrequency:
 from solfeggio.models import SolfeggioFrequency
 
+# Create your models here.
+
 User = get_user_model()
+
 class Chakra(models.Model):
     # Master data for the 7 chakras (no user link)
     CODE_CHOICES = [
-        ('root', 'Root (Root (Muladhara))'),
+        ('root', '(Root (Muladhara))'),
         ('sacral', 'Sacral (Svadhisthana)'),
         ('solar_plexus', 'Solar Plexus (Manipura)'),
         ('heart', 'Heart (Anahata)'),

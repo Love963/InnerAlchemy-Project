@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Chakra, ChakraLog
 
+# Register your models here.
 @admin.register(Chakra)
 class ChakraAdmin(admin.ModelAdmin):
     list_display = ('id', 'code', 'name', 'sanskrit_name', 'color', 'element', 'is_active')

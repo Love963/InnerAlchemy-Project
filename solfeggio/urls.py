@@ -1,13 +1,13 @@
 from rest_framework.routers import DefaultRouter
-from .views import SolfeggioFrequencyViewSet
+from .views import SolfeggioFrequencyViewSet, solfeggio_list
 from django.urls import path
-from . import views
+
+app_name = 'solfeggio'
 router = DefaultRouter()
-router.register(r'', SolfeggioFrequencyViewSet, basename='solfeggio')
-
-urlpatterns = router.urls
-
+router.register(r'frequencies', SolfeggioFrequencyViewSet, basename='solfeggio')
 
 urlpatterns = [
-    path('', views.solfeggio_list, name='solfeggio_list'),
+    path('', solfeggio_list, name='solfeggio_list'),
 ]
+
+urlpatterns += router.urls

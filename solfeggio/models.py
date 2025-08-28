@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class SolfeggioFrequency(models.Model):
-    frequency_hz = models.PositiveBigIntegerField(unique=True)
+    frequency_hz = models.PositiveIntegerField(unique=True)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
 

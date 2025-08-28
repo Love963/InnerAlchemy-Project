@@ -21,16 +21,31 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Users
     path('users/', include('users.urls', namespace='users')),
-    path('api/breathwork/', include('breathwork.urls')),
-    path('solfeggio/', include('solfeggio.urls')),
-    path('chakras/', include('chakras.urls')),
-    path('sexualenergy/', include('sexualenergy.urls')),
-    path('visualizations/', include('visualizations.urls')),
-    path('gratitude/', include('gratitude.urls')),
-    path('coldshowers/', include('coldshowers.urls')),
-    path('', include('dashboard.urls')),
+
+    # API v1 endpoints
     
+    path('api/v1/breathwork/', include('breathwork.urls', namespace='breathwork')),
+    path("api/v1/meditation/", include("meditation.urls")),
+    path('api/v1/nutrition/', include('nutrition.urls', namespace='nutrition')),
+    path('api/v1/sleep/', include('sleep.urls', namespace='sleep')),
+    path('api/v1/solfeggio/', include('solfeggio.urls', namespace='solfeggio')),
+    path('api/v1/sexualenergy/', include('sexualenergy.urls', namespace='sexualenergy')),
+    path('api/v1/visualizations/', include('visualizations.urls', namespace='visualizations')),
+    path('api/v1/gratitude/', include('gratitude.urls', namespace='gratitude')),
+    path('api/v1/coldshowers/', include('coldshowers.urls', namespace='coldshowers')),
+    path('api/v1/workouts/', include('workouts.urls', namespace='workouts')),
+    path('api/v1/soulnotes/', include('soulnotes.urls', namespace='soulnotes')),
+    path('api/v1/chakras/', include('chakras.urls', namespace='chakras')),
+    path('api/v1/core/', include('core.urls', namespace='core')),
+    path('api/v1/habits/', include('habits.urls', namespace='habits')),
+
+
+    # Dashboard / Core
+    path('', include('dashboard.urls')),  # FE dashboard templates
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

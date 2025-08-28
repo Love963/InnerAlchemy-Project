@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin 
-from django.contrib.auth.models import User
+from .models import User
 # Register your models here.
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
@@ -9,15 +9,16 @@ class UserAdmin(DjangoUserAdmin):
     search_fields = ('email', 'username')
     ordering = ('email', )
     fieldsets = (
-        (None, {'fields', ('email','username', 'password')}),
-        ('Personal', {'fields': ('first_name', 'last_name', 'bio', 'avatar')}),
+        (None, {'fields': ('email', 'username', 'password')}),
+        ('Personal Info', {'fields': ('first_name', 'last_name', 'bio', 'avatar')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
+
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'username', 'password', 'password2'),
+            'fields': ('email', 'username', 'password1', 'password2'),
 
         }),
     )

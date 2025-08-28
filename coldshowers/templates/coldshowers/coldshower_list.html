@@ -1,11 +1,10 @@
 <h2>My Cold Showers</h2>
-<a href="{% url 'coldshower_new' %}">Log a new cold shower</a>
+<a href="{% url 'coldshowers:coldshower_new' %}">Log a new cold shower</a>
 <ul>
     {% for log in logs %}
     <li>
-        <a href="{% url 'coldshower_detail' log.pk %}">
+        <a href="{% url 'coldshowers:coldshower_detail' log.pk %}">
             {{ log.date }} - Resistance: {{ log.resistance_level }}
-
         </a>
     </li>
     {% endfor %}

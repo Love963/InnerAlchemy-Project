@@ -5,11 +5,9 @@ from .serializers import SolfeggioFrequencySerializer
 # Create your views here.
 
 class SolfeggioFrequencyViewSet(viewsets.ModelViewSet):
-    """
-    Master Solfeggio frequencies.
-    - Anyone can list/retrieve
-    - Only admin can create/update/delete
-    """
+
+    # Anyone can list/retrieve
+    # Only admin can create/update/delete
     queryset = SolfeggioFrequency.objects.all()
     serializer_class = SolfeggioFrequencySerializer
 

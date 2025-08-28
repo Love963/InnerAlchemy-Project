@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import BreathworkSession
 
+# Register your models here.
 @admin.register(BreathworkSession)
 class BreathworkSessionAdmin(admin.ModelAdmin):
     list_display = ('user', 'technique', 'duration', 'energy_level', 'date')

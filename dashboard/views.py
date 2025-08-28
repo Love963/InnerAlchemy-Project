@@ -17,7 +17,7 @@ def home(request):
     recent_chakras = ChakraLog.objects.filter(user=user).order_by('-date')[:5]
     recent_sexual_energy = SexualEnergySession.objects.filter(user=user).order_by('-created_at')[:5]
     recent_visualizations = VisualizationAffirmation.objects.filter(user=user).order_by('-date_created')[:5]
-    recent_gratitude = GratitudeEntry.objects.filter(user=user).order_by('-date')[:5]
+    recent_gratitude = GratitudeEntry.objects.filter(user=request.user).order_by('-created_at')[:5]
     recent_coldshowers = ColdShowerLog.objects.filter(user=user).order_by('-date')[:5]
 
     context = {

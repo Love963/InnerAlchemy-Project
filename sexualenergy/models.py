@@ -25,7 +25,7 @@ class SexualEnergySession(models.Model):
 class SexualEnergyLog(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # fixed
     urges_felt = models.BooleanField(default=False)
-    energy_level = models.IntegerField(
+    energy_level = models.PositiveIntegerField(
         choices=[(i, str(i)) for i in range(1, 11)],
         default=5
     )
