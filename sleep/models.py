@@ -45,7 +45,6 @@ class SleepStageType(models.Model):
     def __str__(self):
         return self.name
 
-
 class SleepStage(models.Model):
     sleep_log = models.ForeignKey(SleepLog, on_delete=models.CASCADE, related_name="stages")
     stage_type = models.ForeignKey(SleepStageType, on_delete=models.CASCADE)
@@ -53,7 +52,6 @@ class SleepStage(models.Model):
 
     def __str__(self):
         return f"{self.stage_type.name} - {self.duration_minutes} min"
-
 
 class SleepSolfeggioRecommendation(models.Model):
     sleep_log = models.ForeignKey(SleepLog, on_delete=models.CASCADE, related_name="solfeggio_recommendations")

@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'sleep',
     'core',
     'habits',
+    'challenges',
+    'community_posts',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

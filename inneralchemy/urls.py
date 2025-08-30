@@ -41,6 +41,8 @@ urlpatterns = [
     path('api/v1/chakras/', include('chakras.urls', namespace='chakras')),
     path('api/v1/core/', include('core.urls', namespace='core')),
     path('api/v1/habits/', include('habits.urls', namespace='habits')),
+    path('api/v1/challenges/', include('challenges.urls')),
+    path('api/v1/community_posts/', include('community_posts.urls')),
 
 
     # Dashboard / Core

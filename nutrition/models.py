@@ -39,8 +39,6 @@ class NutritionLog(models.Model):
         null=True,
         help_text="Any supplements taken"
     )
-
-    # ---- Well-being effects ----
     energy_effect = models.IntegerField(
         choices=[(i, str(i)) for i in range(1, 11)],
         default=5,

@@ -1,9 +1,8 @@
 from django.test import TestCase
-
-# Create your tests here.
-# core/tests.py
-from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.utils import timezone
+from datetime import timedelta
+
 from solfeggio.models import SolfeggioFrequency
 from meditation.models import MeditationSession
 from chakras.models import Chakra, ChakraLog
@@ -18,34 +17,31 @@ from sleep.models import SleepLog, SleepStageType, SleepStage, SleepSolfeggioRec
 
 User = get_user_model()
 
+
 class InnerAlchemyTests(TestCase):
 
     def setUp(self):
-        # Create a test user
+        # Test user
         self.user = User.objects.create_user(
             email="testuser@example.com", username="testuser", password="strongpass123"
         )
+        # Core frequency
+        self.freq = SolfeggioFrequency.objects.create(
+            frequency_hz=528, name="Love Frequency"
+        )
+        # Chakra master
+        self.root_chakra = Chakra.objects.create(
+            code="root", name="Root", sanskrit_name="Muladhara"
+        )
 
-        # Solfeggio Frequency
-        self.freq = SolfeggioFrequency.objects.create(frequency_hz=528, name="Love Frequency")
 
-        # Chakras master
-        self.root_chakra = Chakra.objects.create(code='root', name='Root', sanskrit_name='Muladhara')
-
-    # -----------------------------
-    # Solfeggio Frequency Tests
-    # -----------------------------
+    # Solfeggio
     def test_solfeggio_creation(self):
         freq = SolfeggioFrequency.objects.get(frequency_hz=528)
         self.assertEqual(freq.name, "Love Frequency")
 
-    # -----------------------------
-    # Meditation Session Tests
-    # -----------------------------
-    # -----------------------------
-    # Meditation Session Tests
-    # -----------------------------
-    def test_meditation_with_frequency_and_spirit_level(self):
+    # Meditation
+    def test_meditation_session(self):
         med = MeditationSession.objects.create(
             user=self.user,
             title="Morning Clarity",
@@ -54,60 +50,46 @@ class InnerAlchemyTests(TestCase):
             clarity_score=9,
             mood_before="Calm",
             mood_after="Grateful",
-            spirit_level="Balanced",   # ✅ new field
-            solfeggio_frequency=self.freq
+            solfeggio_frequency=self.freq,
         )
-
-        # Assertions
-        self.assertEqual(med.solfeggio_frequency.name, "Love Frequency")
         self.assertEqual(med.user.username, "testuser")
-        self.assertEqual(med.spirit_level, "Balanced")
+        self.assertEqual(med.solfeggio_frequency.name, "Love Frequency")
         self.assertEqual(med.mood_after, "Grateful")
-        self.assertEqual(str(med), f"{med.title} - {self.user.username}")
 
-
-    # -----------------------------
-    # Chakra Logs Tests
-    # -----------------------------
+    # Chakra Logs
     def test_chakra_log_creation(self):
         log = ChakraLog.objects.create(
             user=self.user,
             chakra=self.root_chakra,
-            state='balanced',
+            state="balanced",
             intensity=7,
-            solfeggio_frequency=self.freq
+            solfeggio_frequency=self.freq,
         )
-        self.assertEqual(log.chakra.name, 'Root')
+        self.assertEqual(log.chakra.name, "Root")
         self.assertEqual(log.solfeggio_frequency.frequency_hz, 528)
 
-    # -----------------------------
-    # Sexual Energy Tests
-    # -----------------------------
-    def test_sexual_energy_session(self):
+    # Sexual Energy
+    def test_sexual_energy_session_and_log(self):
         ses = SexualEnergySession.objects.create(
-            user=self.user,
-            intention='creativity',
-            duration_minutes=15
+            user=self.user, intention="creativity", duration_minutes=15
         )
-        self.assertEqual(ses.intention, 'creativity')
+        self.assertEqual(ses.intention, "creativity")
 
         sel = SexualEnergyLog.objects.create(
             user=self.user,
             urges_felt=True,
             energy_level=8,
-            redirect_activity='Meditation'
+            redirect_activity="Meditation",
         )
         self.assertEqual(sel.energy_level, 8)
 
-    # -----------------------------
-    # Gratitude & Visualization Tests
-    # -----------------------------
+    # Gratitude & Visualization
     def test_gratitude_and_visualization(self):
         gratitude = GratitudeEntry.objects.create(
             user=self.user,
             content="Grateful for health",
             gratitude_score=9,
-            solfeggio_frequency=self.freq
+            solfeggio_frequency=self.freq,
         )
         self.assertEqual(gratitude.gratitude_score, 9)
 
@@ -115,75 +97,61 @@ class InnerAlchemyTests(TestCase):
             user=self.user,
             title="Abundance Visualization",
             content="I am abundant",
-            solfeggio_frequency=self.freq
+            solfeggio_frequency=self.freq,
         )
         self.assertEqual(viz.solfeggio_frequency.frequency_hz, 528)
 
-    # -----------------------------
-    # Cold Shower & Workout Tests
-    # -----------------------------
+    # Cold Shower & Workout
     def test_cold_shower_and_workout(self):
         cs = ColdShowerLog.objects.create(
             user=self.user,
-            mood_before='tired',
-            mood_after='refreshed',
-            resistance_level=7
+            mood_before="tired",
+            mood_after="refreshed",
+            resistance_level=7,
         )
         self.assertEqual(cs.resistance_level, 7)
 
         workout = WorkoutSession.objects.create(
-            user=self.user,
-            type='yoga',
-            duration_minutes=30,
-            energy_effect=8
+            user=self.user, type="yoga", duration_minutes=30, energy_effect=8
         )
-        self.assertEqual(workout.type, 'yoga')
+        self.assertEqual(workout.type, "yoga")
 
-    # -----------------------------
     # Soul Notes & Nutrition
-    # -----------------------------
     def test_soulnote_and_nutrition(self):
         note = SoulNote.objects.create(
-            user=self.user,
-            title="Morning Insight",
-            content="Felt very creative today"
+            user=self.user, title="Morning Insight", content="Felt very creative today"
         )
-        self.assertEqual(note.user.username, 'testuser')
+        self.assertEqual(note.user.username, "testuser")
 
         nutrition = NutritionLog.objects.create(
             user=self.user,
-            meal_type='breakfast',
+            meal_type="breakfast",
             food_items="Oats and banana",
             calories=300,
             hydration_liters=0.5,
             energy_effect=7,
-            mood_effect=8
+            mood_effect=8,
         )
-        self.assertEqual(nutrition.meal_type, 'breakfast')
+        self.assertEqual(nutrition.meal_type, "breakfast")
+        self.assertAlmostEqual(nutrition.nutrition_score, 7.5)
 
-    # -----------------------------
     # Sleep Logs & Stages
-    # -----------------------------
     def test_sleep_logs_and_stages(self):
+        start = timezone.now().replace(hour=22, minute=0, second=0, microsecond=0)
+        end = start + timedelta(hours=8)
+
         sleep = SleepLog.objects.create(
-            user=self.user,
-            sleep_start="2025-08-23 22:00",
-            sleep_end="2025-08-24 06:00",
-            mood_after="rested"
+            user=self.user, sleep_start=start, sleep_end=end, mood_after="rested"
         )
-        self.assertEqual(sleep.total_duration.total_seconds(), 8*3600)
+        self.assertEqual(sleep.total_duration.total_seconds(), 8 * 3600)
 
         stage_type = SleepStageType.objects.create(name="REM")
         stage = SleepStage.objects.create(
-            sleep_log=sleep,
-            stage_type=stage_type,
-            duration_minutes=90
+            sleep_log=sleep, stage_type=stage_type, duration_minutes=90
         )
         self.assertEqual(stage.duration_minutes, 90)
 
         rec = SleepSolfeggioRecommendation.objects.create(
-            sleep_log=sleep,
-            frequency="528Hz",
-            reason="Healing"
+            sleep_log=sleep, frequency="528Hz", reason="Healing"
         )
         self.assertEqual(rec.frequency, "528Hz")

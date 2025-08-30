@@ -30,7 +30,6 @@ class VisualizationListCreateAPI(generics.ListCreateAPIView):
 
 
 class VisualizationDetailAPI(generics.RetrieveUpdateDestroyAPIView):
-
     # Retrieve, update, or delete a specific affirmation.
     # Users can only interact with their own affirmations.
     serializer_class = VisualizationSerializer
